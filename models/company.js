@@ -6,10 +6,7 @@ const CompanySchema = new Schema({
     type: { type: String },
     role: { type: String, maxlength: 100 },
     location: { type: String },
-    stage: { type: String },
-    // contacts: { type: Schema.Types.ObjectId, ref: "Contact" },
-    // tasks: { type: Schema.Types.ObjectId, ref: "Task" },
-    // notes: { type: Schema.Types.ObjectId, ref: "Note" }
+    stage: { type: String }
 })
 
 module.exports = mongoose.model("Company", CompanySchema, "interview_tracker")
