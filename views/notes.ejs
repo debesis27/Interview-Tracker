@@ -8,7 +8,12 @@
 		</tr>
   </thead>
 	<tbody>
-		
+		<% for(let i = 0; i <notes_list.length; i++){ %>
+			<tr>
+				<td><%= notes_list.company.company_name %></td>
+				<td><%= notes_list.note %></td>
+			</tr>
+		<% } %>
 	</tbody>
 </table>
 

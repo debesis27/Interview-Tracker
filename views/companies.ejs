@@ -13,7 +13,29 @@
 		</tr>
   </thead>
 	<tbody>
-		
+		<% for(let i = 0; i <company_list.length; i++){ %>
+			<tr>
+				<td><%= company_list[i].company_name %></td>
+				<td><%= company_list[i].type %></td>
+				<td><%= company_list[i].stage %></td>
+				<td><%= company_list[i].role %></td>
+				<td><%= company_list[i].location %></td>
+				<td>
+					<ul>
+						<% for(let j = 0; j <company_list[i].tasks.length; j++){ %>
+							<li><%= company_list[i].tasks[j] %></li>
+						<% } %>
+					</ul>
+				</td>
+				<td>
+					<ul>
+						<% for(let j = 0; j <company_list[i].notes.length; j++){ %>
+							<li><%= company_list[i].notes[j] %></li>
+						<% } %>
+					</ul>
+				</td>
+			</tr>
+		<% } %>
 	</tbody>
 </table>
 
