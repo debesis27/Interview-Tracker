@@ -14,6 +14,7 @@ const app = express();
 //Mongoose connection setup
 const mongoose = require("mongoose");
 mongoose.set('strictQuery', false);
+//Changed the api key to use nodejs version 2.2.12 or later (using latest version is causing unresolvable bug)
 const mongoDB = process.env.MONGO_API_KEY;
 
 main().catch(err => console.log(err));

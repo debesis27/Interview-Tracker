@@ -10,7 +10,23 @@
 		</tr>
   </thead>
 	<tbody>
-		
+		<% for(let i = 0; i <company_list.length; i++){ %>
+			<% if(company_list[i].contacts.length != 0){ %>
+				<tr>
+					<td rowspan="<%= company_list[i].contacts.length %>"><%= company_list[i].company_name %></td>
+					<td><%= company_list[i].contacts[0].name %></td>
+					<td><%= company_list[i].contacts[0].role %></td>
+					<td><%= company_list[i].contacts[0].email %></td>
+				</tr>
+				<tr>
+					<% for(let i = 0; i <company_list.contacts.length; i++){ %>
+						<td><%= company_list[i].contacts[0].name %></td>
+						<td><%= company_list[i].contacts[0].role %></td>
+						<td><%= company_list[i].contacts[0].email %></td>
+					<% } %>
+				</tr>
+			<% } %>
+		<% } %>
 	</tbody>
 </table>
 

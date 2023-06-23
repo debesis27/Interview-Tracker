@@ -9,7 +9,21 @@
 		</tr>
   </thead>
 	<tbody>
-		
+		<% for(let i = 0; i <company_list.length; i++){ %>
+			<% if(company_list[i].tasks.length != 0){ %>
+				<tr>
+					<td rowspan="<%= company_list[i].tasks.length %>"><%= company_list[i].company_name %></td>
+					<td><%= company_list[i].tasks[0].task %></td>
+					<td><%= company_list[i].tasks[0].due_date %></td>
+				</tr>
+				<% for(let j = 0; j <company_list[i].tasks.length; j++){ %>
+					<tr>
+						<td><%= company_list[i].tasks[j].task %></td>
+					<td><%= company_list[i].tasks[j].due_date %></td>
+					</tr>
+				<% } %>			
+			<% } %>
+		<% } %>
 	</tbody>
 </table>
 
