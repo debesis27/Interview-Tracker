@@ -2,6 +2,7 @@ const { body, validation } = require("express-validator");
 const asyncHandler = require("express-async-handler");
 
 const Company = require("../models/company");
+const Task = require("../models/task");
 
 //Get list of all tasks
 exports.task_list = asyncHandler(async(req, res, next) => {
