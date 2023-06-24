@@ -8,11 +8,18 @@
 		</tr>
   </thead>
 	<tbody>
-		<% for(let i = 0; i <notes_list.length; i++){ %>
-			<tr>
-				<td><%= notes_list.company.company_name %></td>
-				<td><%= notes_list.note %></td>
-			</tr>
+		<% for(let i = 0; i <company_list.length; i++){ %>
+			<% if(company_list[i].notes.length != 0){ %>
+				<tr>
+					<td rowspan="<%= company_list[i].notes.length %>"><%= company_list[i].company_name %></td>
+					<td><%= company_list[i].notes[0] %></td>
+				</tr>
+				<% for(let j = 1; j <company_list[i].notes.length; j++){ %>
+					<tr>
+						<td><%= company_list[i].notes[j] %></td>
+					</tr>
+				<% } %>
+			<% } %>
 		<% } %>
 	</tbody>
 </table>

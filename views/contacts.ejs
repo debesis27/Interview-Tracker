@@ -18,13 +18,13 @@
 					<td><%= company_list[i].contacts[0].role %></td>
 					<td><%= company_list[i].contacts[0].email %></td>
 				</tr>
-				<tr>
-					<% for(let i = 0; i <company_list.contacts.length; i++){ %>
-						<td><%= company_list[i].contacts[0].name %></td>
-						<td><%= company_list[i].contacts[0].role %></td>
-						<td><%= company_list[i].contacts[0].email %></td>
-					<% } %>
-				</tr>
+				<% for(let j = 1; j <company_list[i].contacts.length; j++){ %>
+					<tr>
+						<td><%= company_list[i].contacts[j].name %></td>
+						<td><%= company_list[i].contacts[j].role %></td>
+						<td><%= company_list[i].contacts[j].email %></td>
+					</tr>
+				<% } %>
 			<% } %>
 		<% } %>
 	</tbody>

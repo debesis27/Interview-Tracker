@@ -2,6 +2,7 @@ const { body, validation } = require("express-validator");
 const asyncHandler = require("express-async-handler");
 
 const Company = require("../models/company");
+const Contact = require("../models/contact");
 
 //Get list of all contacts
 exports.contact_list = asyncHandler(async(req, res, next) => {

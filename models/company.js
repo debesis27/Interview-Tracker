@@ -8,9 +8,9 @@ const CompanySchema = new Schema({
     location: { type: String },
     stage: { type: String },
     contacts: [{ type: Schema.Types.ObjectId, ref: "Contact" }],
-    interview: [{ type: Schema.Types.ObjectId, ref: "Interview" }],
+    interview: { type: Schema.Types.ObjectId, ref: "Interview" },
     tasks: [{ type: Schema.Types.ObjectId, ref: "Task" }],
-    notes: [{ type: Schema.Types.ObjectId, ref: "Note" }]
+    notes: [{ type: String }]
 });
 
-module.exports = mongoose.model("Company", CompanySchema, "interview_tracker")
+module.exports = mongoose.model("Company", CompanySchema)
