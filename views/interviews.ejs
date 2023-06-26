@@ -14,27 +14,29 @@
   </thead>
 	<tbody>
 		<% for(let i = 0; i <company_list.length; i++){ %>
-			<tr>
-				<td><%= company_list[i].stage %></td>
-				<td><%= company_list[i].company_name %></td>
-				<td><%= company_list[i].role %></td>
-				<td><%= company_list[i].interview.date %></td>
-				<td><%= company_list[i].interview.interview_location %></td>
-				<td>
-					<ul>
-						<% for(let j = 0; j <company_list[i].tasks.length; j++){ %>
-							<li><%= company_list[i].tasks[j].task %></li>
-						<% } %>
-					</ul>
-				</td>
-				<td>
-					<ul>
-						<% for(let j = 0; j <company_list[i].notes.length; j++){ %>
-							<li><%= company_list[i].notes[j] %></li>
-						<% } %>
-					</ul>
-				</td>
-			</tr>
+			<% if(company_list[i].interview != null){ %>
+				<tr>
+					<td><%= company_list[i].stage %></td>
+					<td><%= company_list[i].company_name %></td>
+					<td><%= company_list[i].role %></td>
+					<td><%= company_list[i].interview.date %></td>
+					<td><%= company_list[i].interview.interview_location %></td>
+					<td>
+						<ul>
+							<% for(let j = 0; j <company_list[i].tasks.length; j++){ %>
+								<li><%= company_list[i].tasks[j].task %></li>
+							<% } %>
+						</ul>
+					</td>
+					<td>
+						<ul>
+							<% for(let j = 0; j <company_list[i].notes.length; j++){ %>
+								<li><%= company_list[i].notes[j] %></li>
+							<% } %>
+						</ul>
+					</td>
+				</tr>
+			<% } %>
 		<% } %>
 	</tbody>
 </table>

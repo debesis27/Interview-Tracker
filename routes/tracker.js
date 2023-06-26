@@ -13,14 +13,21 @@ router.get('/', function(req, res, next) {
   res.redirect("/tracker/companies");
 });
 
-router.get('/companies', company_controller.company_list)
+// GET companies list
+router.get('/companies', company_controller.company_list);
 
-router.get('/contacts', contact_controller.contact_list)
+// GET request for creating a company
+router.get('/companies/create', company_controller.company_create_get);
 
-router.get('/interviews', interview_controller.interview_list)
+//POSt request for creating a company
+router.post('/companies/create', company_controller.company_create_post);
 
-router.get('/tasks', task_controller.task_list)
+router.get('/contacts', contact_controller.contact_list);
 
-router.get('/notes', note_controller.notes_list)
+router.get('/interviews', interview_controller.interview_list);
+
+router.get('/tasks', task_controller.task_list);
+
+router.get('/notes', note_controller.notes_list);
 
 module.exports = router;

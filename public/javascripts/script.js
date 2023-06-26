@@ -1,3 +1,3 @@
-$(document).ready(function () {
-    $('#tracker-table').DataTable();
-});
+// $(document).ready(function () {
+//     $('#tracker-table').DataTable();
+// });

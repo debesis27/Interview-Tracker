@@ -7,7 +7,6 @@
 			<th>Type</th>
 			<th>Stage</th>
 			<th>Role</th>
-			<th>Location</th>
 			<th>Tasks</th>
 			<th>Notes</th>
 		</tr>
@@ -19,7 +18,6 @@
 				<td><%= company_list[i].type %></td>
 				<td><%= company_list[i].stage %></td>
 				<td><%= company_list[i].role %></td>
-				<td><%= company_list[i].location %></td>
 				<td>
 					<ul>
 						<% for(let j = 0; j <company_list[i].tasks.length; j++){ %>
@@ -38,5 +36,6 @@
 		<% } %>
 	</tbody>
 </table>
+<a href="/tracker/companies/create"><button class="create-btn btn btn-primary">Add new company</button></a>
 
 <%- include("footer") -%>
