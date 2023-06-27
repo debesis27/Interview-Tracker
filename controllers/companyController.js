@@ -27,28 +27,32 @@ exports.company_create_get = (req, res) => {
 exports.company_create_post = [
 	body("company_name", "company name must be specified")
 		.trim()
-		.isLength({ min: 1 }),
+		.isLength({ min: 1 })
+		.escape(),
 	body("type", "type has non-alphanumeric characters")
 		.trim()
-		.isAlphanumeric(),
+		.isAlphanumeric()
+		.escape(),
 	body("role")
 		.trim()
-		.isLength({ max: 100 }),
+		.isLength({ max: 100 })
+		.escape(),
 	body("stage", "type has non-alphanumeric characters")
 		.trim()
-		.isAlphanumeric(),
+		.isAlphanumeric()
+		.escape(),
 
 	asyncHandler(async(req, res, next) => {
 		const errors = validationResult(req);
 		
 		const company = new Company({
 			company_name: req.body.company_name,
-    	type: req.body.type,
-    	role: req.body.role,
-    	stage: req.body.stage,
-    	contacts: [],
-    	tasks: [],
-    	notes: []
+    		type: req.body.type,
+    		role: req.body.role,
+    		stage: req.body.stage,
+    		contacts: [],
+    		tasks: [],
+    		notes: []
 		});
 
 		if(!errors.isEmpty()){
@@ -60,7 +64,7 @@ exports.company_create_post = [
 			return;
 		}else{
 			await company.save();
-			console.log(`Company ${company.company_name} saved`);
+			console.log(`New company: ${company.company_name}`);
 			res.redirect("/tracker/companies");
 		}
 	})

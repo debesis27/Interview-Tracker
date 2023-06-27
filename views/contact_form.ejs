@@ -1,0 +1,43 @@
+<%- include("header") %>
+
+	<form method="post" action="">
+		<div class="form-group">
+			<label for="contactFormCompany">Select company*</label>
+			<select id="contactFormCompany" class="form-control" name="company_id">
+				<option value="" selected></option>
+				<% for(let i=0; i <company_list.length; i++){ %>
+					<option value="<%= company_list[i]._id %>"><%= company_list[i].company_name %></option>
+				<% } %>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="contactFormName">Name*</label>
+			<input type="text" class="form-control" name="name" id="contactFormName" placeholder="Enter name"
+				value="<%= contact.name %>">
+		</div>
+		<div class="form-group">
+			<label for="contactFormRole">Role</label>
+			<input type="text" class="form-control" name="role" id="contactFormRole" placeholder="Enter role"
+				value="<%= contact.role %>">
+		</div>
+		<div class="form-group">
+			<label for="contactFormEmail">Email</label>
+			<input type="email" class="form-control" aria-describedby="emailHelp" name="email" id="contactFormEmail"
+				placeholder="Enter email id" value="<%= contact.email %>">
+		</div>
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+
+	<% if(errors){ %>
+		<div class="error-list">
+			<ul>
+				<% for(let i=0; i <errors.length; i++){ %>
+					<li>
+						<%= errors[i].msg %>
+					</li>
+					<% } %>
+			</ul>
+		</div>
+	<% } %>
+
+<%- include("footer") %>
