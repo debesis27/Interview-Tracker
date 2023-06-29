@@ -5,6 +5,7 @@
 		<tr>
 			<th>Company</th>
 			<th>Notes</th>
+			<th>Actions</th>
 		</tr>
   </thead>
 	<tbody>
@@ -13,10 +14,12 @@
 				<tr>
 					<td rowspan="<%= company_list[i].notes.length %>"><%= company_list[i].company_name %></td>
 					<td><%= company_list[i].notes[0] %></td>
+					<td><a href="/tracker/notes/<%= company_list[i]._id %>/0/update"><img src="/images/pencil.png"></a></td>
 				</tr>
 				<% for(let j = 1; j <company_list[i].notes.length; j++){ %>
 					<tr>
 						<td><%= company_list[i].notes[j] %></td>
+						<td><a href="/tracker/notes/<%= company_list[i]._id %>/<%= j %>/update"><img src="/images/pencil.png"></a></td>
 					</tr>
 				<% } %>
 			<% } %>

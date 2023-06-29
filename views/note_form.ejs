@@ -6,7 +6,7 @@
 			<select id="noteFormCompany" class="form-control" name="company_id">
 				<option value="" selected></option>
 				<% for(let i=0; i <company_list.length; i++){ %>
-					<option value="<%= company_list[i]._id %>"><%= company_list[i].company_name %></option>
+					<option value="<%= company_list[i]._id %>" <%= company_list[i].selected ? "selected" : "" %> ><%= company_list[i].company_name %></option>
 				<% } %>
 			</select>
 		</div>

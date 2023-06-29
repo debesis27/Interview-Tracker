@@ -24,6 +24,12 @@ router.get('/companies/create', company_controller.company_create_get);
 // POSt request for creating a company
 router.post('/companies/create', company_controller.company_create_post);
 
+// GET request for updating a company
+router.get('/companies/:id/update', company_controller.company_update_get);
+
+// POST request for updating a company
+router.post('/companies/:id/update', company_controller.company_update_post);
+
 /// CONTACT ROUTES ///
 
 // GET contacts list
@@ -34,6 +40,12 @@ router.get('/contacts/create', contact_controller.contact_create_get);
 
 // POST request for creating a contact
 router.post('/contacts/create', contact_controller.contact_create_post);
+
+// GET request for updating a contact
+router.get('/contacts/:id/update', contact_controller.contact_update_get);
+
+// POST request for updating a contact
+router.post('/contacts/:id/update', contact_controller.contact_update_post);
 
 /// INTERVIEW ROUTES ///
 
@@ -46,6 +58,12 @@ router.get('/interviews/create', interview_controller.interview_create_get);
 // POST request for creating an interview
 router.post('/interviews/create', interview_controller.interview_create_post);
 
+// GET request for updating an interview
+router.get('/interviews/:id/update', interview_controller.interview_update_get);
+
+// POST request for updating an interview
+router.post('/interviews/:id/update', interview_controller.interview_update_post);
+
 /// TASK ROUTES ///
 
 // GET tasks list
@@ -57,6 +75,12 @@ router.get('/tasks/create', task_controller.task_create_get);
 // POST request for creating a task
 router.post('/tasks/create', task_controller.task_create_post);
 
+// GET request for updating a task
+router.get('/tasks/:id/update', task_controller.task_update_get);
+
+// POST request for updating a task
+router.post('/tasks/:id/update', task_controller.task_update_post);
+
 /// NOTE ROUTES ///
 
 // GET notes list
@@ -67,5 +91,11 @@ router.get('/notes/create', note_controller.note_create_get);
 
 // POST request for creating a note
 router.post('/notes/create', note_controller.note_create_post);
+
+// GET request for updating a note
+router.get('/notes/:id/:index/update', note_controller.note_update_get);
+
+// POST request for updating a note
+router.post('/notes/:id/:index/update', note_controller.note_update_post);
 
 module.exports = router;

@@ -6,6 +6,7 @@
 			<th>Company</th>
 			<th>Tasks</th>
 			<th>Due Date</th>
+			<th>Actions</th>
 		</tr>
   </thead>
 	<tbody>
@@ -15,11 +16,13 @@
 					<td rowspan="<%= company_list[i].tasks.length %>"><%= company_list[i].company_name %></td>
 					<td><%= company_list[i].tasks[0].task %></td>
 					<td><%= company_list[i].tasks[0].due_date %></td>
+					<td><a href="<%= company_list[i].tasks[0].url%>/update"><img src="/images/pencil.png"></a></td>
 				</tr>
 				<% for(let j = 1; j <company_list[i].tasks.length; j++){ %>
 					<tr>
 						<td><%= company_list[i].tasks[j].task %></td>
-					<td><%= company_list[i].tasks[j].due_date %></td>
+						<td><%= company_list[i].tasks[j].due_date %></td>
+						<td><a href="<%= company_list[i].tasks[j].url%>/update"><img src="/images/pencil.png"></a></td>
 					</tr>
 				<% } %>			
 			<% } %>

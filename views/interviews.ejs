@@ -10,6 +10,7 @@
 			<th>Interview Location</th>
 			<th>Tasks</th>
 			<th>Notes</th>
+			<th>Actions</th>
 		</tr>
   </thead>
 	<tbody>
@@ -35,6 +36,7 @@
 							<% } %>
 						</ul>
 					</td>
+					<td><a href="<%= company_list[i].interview.url%>/update"><img src="/images/pencil.png"></a></td>
 				</tr>
 			<% } %>
 		<% } %>

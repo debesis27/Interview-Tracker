@@ -12,4 +12,9 @@ const CompanySchema = new Schema({
     notes: [{ type: String }]
 });
 
+//Virtual for company's URL
+CompanySchema.virtual("url").get(function (){
+    return "/tracker/companies/" + this._id
+});
+
 module.exports = mongoose.model("Company", CompanySchema)

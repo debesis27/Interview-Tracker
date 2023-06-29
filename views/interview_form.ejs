@@ -6,25 +6,13 @@
 			<select id="interviewFormCompany" class="form-control" name="company_id">
 				<option value="" selected></option>
 				<% for(let i=0; i <company_list.length; i++){ %>
-					<option value="<%= company_list[i]._id %>"><%= company_list[i].company_name %></option>
+					<option value="<%= company_list[i]._id %>" <%= company_list[i].selected ? "selected" : "" %>><%= company_list[i].company_name %></option>
 				<% } %>
 			</select>
 		</div>
 		<div class="form-group">
-			<label for="interviewFormStage">Select application stage</label>
-			<select id="interviewFormStage" class="form-control" name="stage">
-				<option value="" selected></option>
-				<option value="Researching">Researching</option>
-				<option value="Applied">Applied</option>
-				<option value="Phone Screen">Phone Screen</option>
-				<option value="On-site">On-site</option>
-				<option value="References">References</option>
-				<option value="Offer">Offer</option>
-			</select>
-		</div>
-		<div class="form-group">
 			<label for="interviewFormDate">Date*</label>
-			<input type="date" class="form-control" name="date" id="interviewFormDate" value="<%= interview.date %>">
+			<input type="date" class="form-control" name="date" id="interviewFormDate" value="<%= interview_date %>">
 		</div>
 		<div class="form-group">
 			<label for="interviewFormLocation">Location</label>

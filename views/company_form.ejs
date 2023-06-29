@@ -14,8 +14,16 @@
     <input type="text" class="form-control" name="role" id="companyFormRole" placeholder="Enter role" value="<%= company.role %>">
   </div>
 	<div class="form-group">
-    <label for="companyFormStage">Stage</label>
-    <input type="text" class="form-control" name="stage" id="companyFormStage" placeholder="Phone Screen, On-site, Offer,..." value="<%= company.stage %>">
+    <label for="companyFormStage">Select application stage</label>
+    <select id="companyFormStage" class="form-control" name="stage">
+      <option value="" selected></option>
+      <option value="Researching" <%= company.researching ? "selected" : "" %>>Researching</option>
+      <option value="Applied"<%= company.applied ? "selected" : "" %>>Applied</option>
+      <option value="Phone Screen" <%= company.phone_screen ? "selected" : "" %>>Phone Screen</option>
+      <option value="On-site" <%= company.onsite ? "selected" : "" %>>On-site</option>
+      <option value="References" <%= company.references ? "selected" : "" %>>References</option>
+      <option value="Offer" <%= company.offer ? "selected" : "" %>>Offer</option>
+    </select>
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
