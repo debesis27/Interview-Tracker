@@ -30,6 +30,9 @@ router.get('/companies/:id/update', company_controller.company_update_get);
 // POST request for updating a company
 router.post('/companies/:id/update', company_controller.company_update_post);
 
+// GET request for deleting a company
+router.get('/companies/:id/delete', company_controller.company_delete_get);
+
 /// CONTACT ROUTES ///
 
 // GET contacts list
@@ -46,6 +49,9 @@ router.get('/contacts/:id/update', contact_controller.contact_update_get);
 
 // POST request for updating a contact
 router.post('/contacts/:id/update', contact_controller.contact_update_post);
+
+// GET request for deleting a contact
+router.get('/contacts/:id/delete', contact_controller.contact_delete_get);
 
 /// INTERVIEW ROUTES ///
 
@@ -64,6 +70,9 @@ router.get('/interviews/:id/update', interview_controller.interview_update_get);
 // POST request for updating an interview
 router.post('/interviews/:id/update', interview_controller.interview_update_post);
 
+// GET request for deleting an interview
+router.get('/interviews/:id/delete', interview_controller.interview_delete_get);
+
 /// TASK ROUTES ///
 
 // GET tasks list
@@ -81,6 +90,9 @@ router.get('/tasks/:id/update', task_controller.task_update_get);
 // POST request for updating a task
 router.post('/tasks/:id/update', task_controller.task_update_post);
 
+// GET request for deleting a task
+router.get('/tasks/:id/delete', task_controller.task_delete_get);
+
 /// NOTE ROUTES ///
 
 // GET notes list
@@ -97,5 +109,8 @@ router.get('/notes/:id/:index/update', note_controller.note_update_get);
 
 // POST request for updating a note
 router.post('/notes/:id/:index/update', note_controller.note_update_post);
+
+// GET request for deleting a note
+router.get('/notes/:id/:index/delete', note_controller.note_delete_get);
 
 module.exports = router;

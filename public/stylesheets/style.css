@@ -30,3 +30,9 @@ form {
   margin-top: 3%;
   margin-left: 3%;
 }
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 10px;
+}

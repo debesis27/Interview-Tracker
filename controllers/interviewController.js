@@ -173,3 +173,28 @@ exports.interview_update_post = [
 		}
 	})
 ];
+
+// Handle Interview Delete on GET
+exports.interview_delete_get = asyncHandler(async (req, res, next) => {
+	const [interview, allCompanies] = await Promise.all([
+		Interview.findById(req.params.id),
+		Company.find().sort({ company_name: 1 }).exec()
+	]);
+
+	if(interview == null){
+		const err = new Error("Interview not found");
+		err.status = 404;
+		return next(err);
+	}
+
+	const interviewCompany = allCompanies.find(company => {
+		return company.interview._id.toString() === interview._id.toString();
+	})
+
+	await Promise.all([
+		Interview.findByIdAndRemove(req.params.id),
+		Company.findByIdAndUpdate(interviewCompany._id, { interview: null })
+	]);
+	console.log(`Interview deleted`);
+	res.redirect("/tracker/interviews");
+});

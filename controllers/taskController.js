@@ -167,7 +167,7 @@ exports.task_update_post = [
         }
       }
 
-      await Task.findByIdAndUpdate(req.params.id, updatedTask, {});
+      await Task.findByIdAndUpdate(req.params.id, newTask, {});
 
 			if (oldCompany._id.toString() !== req.body.company_id.toString()){
 				await Company.findByIdAndUpdate(oldCompany._id, { $pull: { tasks: newTask._id } });
@@ -180,3 +180,32 @@ exports.task_update_post = [
   })
 
 ];
+
+// Handle Task Delete on GET
+exports.task_delete_get = asyncHandler(async(req, res, next) => {
+  const [task, allCompanies] = await Promise.all([
+    Task.findById(req.params.id),
+    Company.find().sort({ company_name: 1 }).exec()
+  ]) 
+
+  if (task == null) {
+    const err = new Error("Task not found");
+    err.status = 404;
+    return next(err);
+  }
+
+  const taskCompany = allCompanies.find(company => {
+    for (let i = 0; i < company.tasks.length; i++) {
+      if (company.tasks[i]._id.toString() === task._id.toString()) {
+        return true;
+      }
+    }
+  }, "");
+
+  await Promise.all([
+    Task.findByIdAndRemove(req.params.id),
+    Company.findByIdAndUpdate(taskCompany._id, { $pull: { tasks: task._id } })
+  ]);
+  console.log(`Task Deleted: ${task.task}`);
+  res.redirect("/tracker/tasks");  
+});

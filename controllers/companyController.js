@@ -2,6 +2,8 @@ const { body, validation, validationResult } = require("express-validator");
 const asyncHandler = require("express-async-handler");
 
 const Company = require("../models/company");
+const Contact = require("../models/contact");
+const Interview = require("../models/interview");
 const Task = require("../models/task");
 
 // Get list of all companies
@@ -143,3 +145,25 @@ exports.company_update_post = [
 		}
 	})
 ];
+
+// Handle Company delete on GET
+exports.company_delete_get = asyncHandler(async(req, res, next) => {
+	const company = await Company.findById(req.params.id).exec();
+	
+	if(company == null){
+		const err = new Error("Company not found");
+		err.status = 404;
+		return next(err);
+	}
+
+	for(let i = 0; i < company.contacts.length; i++){
+		await Contact.findByIdAndDelete(company.contacts[i]);
+	}
+	for(let i = 0; i < company.tasks.length; i++){
+		await Task.findByIdAndDelete(company.tasks[i]);
+	}
+	await Interview.findByIdAndDelete(company.interview);
+	await Company.findByIdAndDelete(req.params.id);
+	console.log(`Deleted company: ${company.company_name}`);
+	res.redirect("/tracker/companies");
+});

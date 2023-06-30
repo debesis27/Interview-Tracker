@@ -121,3 +121,19 @@ exports.note_update_post = [
 		}
 	})
 ];
+
+// Handle Note Delete on GET
+exports.note_delete_get = asyncHandler(async(req, res, next) => {
+	const allCompanies = await Company.find();
+	let note;
+	for(let i = 0; i < allCompanies.length; i++){
+		if(allCompanies[i]._id == req.params.id){
+			note = allCompanies[i].notes[req.params.index];
+			break;
+		}
+	};
+
+	await Company.findByIdAndUpdate(req.params.id, { $pull: { notes: note } }, {});
+	console.log(`Note deleted: ${note}`);
+	res.redirect("/tracker/notes");
+});

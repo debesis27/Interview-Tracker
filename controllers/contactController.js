@@ -213,3 +213,32 @@ exports.contact_update_post = [
 		}
 	})
 ];
+
+// Handle contact delete on GET
+exports.contact_delete_get = asyncHandler(async (req, res, next) => {
+	const [contact, allCompanies] = await Promise.all([
+		Contact.findById(req.params.id).exec(),
+		Company.find().sort({ company_name: 1 }).exec()
+	]);
+
+	if (contact == null) {
+		const err = new Error("Contact not found");
+		err.status = 404;
+		return next(err);
+	}
+
+	const contactCompany = allCompanies.find(company => {
+		for(let i = 0; i < company.contacts.length; i++){
+			if(company.contacts[i]._id.toString() === contact._id.toString()){
+				return true;
+			}
+		}
+	}, "");
+
+	await Promise.all([
+		Contact.findByIdAndRemove(req.params.id),
+		Company.findByIdAndUpdate(contactCompany._id, { $pull: { contacts: contact._id } })
+	]);
+	console.log(`Deleted Contact: ${contact.name}`);
+	res.redirect("/tracker/contacts");
+});

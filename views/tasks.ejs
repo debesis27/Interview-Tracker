@@ -1,34 +1,104 @@
 <%- include("header") -%>
 
-<table id="tracker-table" class="table table-bordered">
-  <thead>
-		<tr>
-			<th>Company</th>
-			<th>Tasks</th>
-			<th>Due Date</th>
-			<th>Actions</th>
-		</tr>
-  </thead>
-	<tbody>
-		<% for(let i = 0; i <company_list.length; i++){ %>
-			<% if(company_list[i].tasks.length != 0){ %>
-				<tr>
-					<td rowspan="<%= company_list[i].tasks.length %>"><%= company_list[i].company_name %></td>
-					<td><%= company_list[i].tasks[0].task %></td>
-					<td><%= company_list[i].tasks[0].due_date %></td>
-					<td><a href="<%= company_list[i].tasks[0].url%>/update"><img src="/images/pencil.png"></a></td>
-				</tr>
-				<% for(let j = 1; j <company_list[i].tasks.length; j++){ %>
+	<table id="tracker-table" class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Company</th>
+				<th>Tasks</th>
+				<th>Due Date</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% for(let i=0; i <company_list.length; i++){ %>
+				<% if(company_list[i].tasks.length !=0){ %>
 					<tr>
-						<td><%= company_list[i].tasks[j].task %></td>
-						<td><%= company_list[i].tasks[j].due_date %></td>
-						<td><a href="<%= company_list[i].tasks[j].url%>/update"><img src="/images/pencil.png"></a></td>
-					</tr>
-				<% } %>			
-			<% } %>
-		<% } %>
-	</tbody>
-</table>
-<a href="/tracker/tasks/create"><button class="create-btn btn btn-primary">Add new task</button></a>
+						<td rowspan="<%= company_list[i].tasks.length %>">
+							<%= company_list[i].company_name %>
+						</td>
+						<td>
+							<%= company_list[i].tasks[0].task %>
+						</td>
+						<td>
+							<%= company_list[i].tasks[0].due_date %>
+						</td>
+						<td>
+							<div class="grid-container">
+								<div class="grid-item"><a href="<%= company_list[i].tasks[0].url%>/update"><button type="button"
+											class="btn bg-transparent border-0 shadow-none"><img src="/images/pencil.png"></button></a></div>
+								<div class="grid-item"><button type="button" class="btn bg-transparent border-0 shadow-none"
+										data-toggle="modal" data-target="#deleteModal<%= company_list[i]._id %>0"><img src="/images/trash.png"></button></div>
+							</div>
 
-<%- include("footer") -%>
+							<!-- Modal -->
+							<div class="modal fade" id="deleteModal<%= company_list[i]._id %>0" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+								aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											Do you want to delete this task
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+											<a href="<%= company_list[i].tasks[0].url %>/delete"><button type="button" class="btn btn-danger">Delete</button></a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</td>
+					</tr>
+					<% for(let j=1; j <company_list[i].tasks.length; j++){ %>
+						<tr>
+							<td>
+								<%= company_list[i].tasks[j].task %>
+							</td>
+							<td>
+								<%= company_list[i].tasks[j].due_date %>
+							</td>
+							<td>
+								<div class="grid-container">
+									<div class="grid-item"><a href="<%= company_list[i].tasks[j].url%>/update"><button type="button"
+												class="btn bg-transparent border-0 shadow-none"><img src="/images/pencil.png"></button></a>
+									</div>
+									<div class="grid-item"><button type="button" class="btn bg-transparent border-0 shadow-none"
+											data-toggle="modal" data-target="#deleteModal<%= company_list[i]._id %><%= j %>"><img src="/images/trash.png"></button></div>
+								</div>
+
+								<!-- Modal -->
+								<div class="modal fade" id="deleteModal<%= company_list[i]._id %><%= j %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+									aria-hidden="true">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body">
+												Do you want to delete this task
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+												<a href="<%= company_list[i].tasks[j].url %>/delete"><button type="button" class="btn btn-danger">Delete</button></a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<% } %>
+							<% } %>
+								<% } %>
+		</tbody>
+	</table>
+	<a href="/tracker/tasks/create"><button class="create-btn btn btn-primary">Add new task</button></a>
+
+	<%- include("footer") -%>
