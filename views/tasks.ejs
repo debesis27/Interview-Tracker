@@ -20,7 +20,7 @@
 							<%= company_list[i].tasks[0].task %>
 						</td>
 						<td>
-							<%= company_list[i].tasks[0].due_date %>
+							<%= company_list[i].tasks[0].due_date.toString().slice(0, 16) %>
 						</td>
 						<td>
 							<div class="grid-container">
@@ -60,7 +60,7 @@
 								<%= company_list[i].tasks[j].task %>
 							</td>
 							<td>
-								<%= company_list[i].tasks[j].due_date %>
+								<%= company_list[i].tasks[j].due_date.toString().slice(0, 16) %>
 							</td>
 							<td>
 								<div class="grid-container">

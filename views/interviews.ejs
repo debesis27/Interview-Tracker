@@ -20,7 +20,7 @@
 					<td><%= company_list[i].stage %></td>
 					<td><%= company_list[i].company_name %></td>
 					<td><%= company_list[i].role %></td>
-					<td><%= company_list[i].interview.date %></td>
+					<td><%= company_list[i].interview.date.toString().slice(0, 16) %></td>
 					<td><%= company_list[i].interview.interview_location %></td>
 					<td>
 						<ul>
